@@ -12,6 +12,7 @@ import javax.swing.WindowConstants;
 
 public class FrmEstadistica extends JFrame{
 
+    JTextField txtDato;
 
     public FrmEstadistica (){    
         setSize (600,300);
@@ -23,7 +24,7 @@ public class FrmEstadistica extends JFrame{
         lblDato.setBounds(20,10,100,25);
         getContentPane().add(lblDato);
         
-        JTextField txtDato=new JTextField();
+        txtDato=new JTextField();
         txtDato.setBounds(110,10,100,25);
         getContentPane().add(txtDato);
 
@@ -64,8 +65,16 @@ public class FrmEstadistica extends JFrame{
         
 
     }
+
+    private double[] muestra=new double[1000];
+    private int totalDatos = -1;
+
+
     private void agregarDato(){
-        JOptionPane.showMessageDialog(null, "hizo click en agregar");
+        double dato=Double.parseDouble(txtDato.getText());
+        totalDatos++;
+        muestra[totalDatos] = dato;
+
 
     }
 
