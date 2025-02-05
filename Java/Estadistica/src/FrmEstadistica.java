@@ -1,6 +1,11 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -23,7 +28,7 @@ public class FrmEstadistica extends JFrame{
         getContentPane().add(txtDato);
 
         JLabel lblDatos=new JLabel("Muestra");
-        lblDatos.setBounds(350,10,100,25);
+        lblDatos.setBounds(385,10,100,25);
         getContentPane().add(lblDatos);
 
         JButton btnAgregar=new JButton("Agregar");
@@ -34,8 +39,41 @@ public class FrmEstadistica extends JFrame{
         btnQuitar.setBounds(110, 80,100,25);
         getContentPane().add(btnQuitar);
 
+        JList lstMuesta=new JList();
+        lstMuesta.setBounds(360,40,100,150);
+        getContentPane().add(lstMuesta);
+
+        btnAgregar.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                agregarDato();
+
+            }
+
+
+        });
+
+        btnQuitar.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                quitarDato();
+
+            }
+
+
+        });
+
+        
 
     }
+    private void agregarDato(){
+        JOptionPane.showMessageDialog(null, "hizo click en agregar");
+
+    }
+
+    private void quitarDato(){
+        JOptionPane.showMessageDialog(null,"hizo click en quitar");
+
+    }
+
 
 
 }
