@@ -7,12 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 import javax.swing.WindowConstants;
 
 
 public class FrmEstadistica extends JFrame{
 
     JTextField txtDato;
+    JList lstMuestra;
 
     public FrmEstadistica (){    
         setSize (600,300);
@@ -40,9 +42,9 @@ public class FrmEstadistica extends JFrame{
         btnQuitar.setBounds(110, 80,100,25);
         getContentPane().add(btnQuitar);
 
-        JList lstMuesta=new JList();
-        lstMuesta.setBounds(360,40,100,150);
-        getContentPane().add(lstMuesta);
+        lstMuestra=new JList();
+        lstMuestra.setBounds(360,40,100,150);
+        getContentPane().add(lstMuestra);
 
         btnAgregar.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
@@ -74,7 +76,20 @@ public class FrmEstadistica extends JFrame{
         double dato=Double.parseDouble(txtDato.getText());
         totalDatos++;
         muestra[totalDatos] = dato;
+        mostrarMuestra();
 
+
+    }
+
+    private void mostrarMuestra(){
+        String[] strmuestra=new String[totalDatos+1];
+
+        lstMuestra.removeAll();
+        for(int i=0; i<=totalDatos;i++){
+           strmuestra[i]=(String.valueOf(muestra[i]));
+
+        }
+        lstMuestra.setListData(strmuestra);
 
     }
 
