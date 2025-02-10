@@ -19,6 +19,7 @@ public class FrmEstadistica extends JFrame{
     JTextField txtDato;
     JList lstMuestra;
     JTextField txtEstadistica;
+    JComboBox cmbEstadistica;
 
     public FrmEstadistica (){    
         setSize (600,300);
@@ -55,7 +56,7 @@ public class FrmEstadistica extends JFrame{
         btnEstadistica.setBounds(85,205,100,25);
         getContentPane().add(btnEstadistica);
 
-        JComboBox cmbEstadistica=new JComboBox();
+        cmbEstadistica=new JComboBox();
         String[] opciones=new String[]{"Sumatoria", "Promedio", "Desviacion", "Maximo", "Minimo", "Moda"}; 
         DefaultComboBoxModel mdlEstadistica=new DefaultComboBoxModel(opciones);
         cmbEstadistica.setModel(mdlEstadistica);
@@ -86,6 +87,16 @@ public class FrmEstadistica extends JFrame{
 
 
         });
+
+        btnEstadistica.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                calcularEstadistica();
+
+            }
+
+
+        });
+        
 
         
 
@@ -144,6 +155,26 @@ public class FrmEstadistica extends JFrame{
 
     }
 
+    private double sumatoria(){
+        double suma=0;
+        for (int i = 0; i<= totalDatos; i++){
+            suma += muestra[i];
+        }
+        return suma;
+
+
+    }
+
+    private void calcularEstadistica(){
+        switch (cmbEstadistica.getSelectedIndex()) {
+            case 0:
+                txtEstadistica.setText(String.valueOf(sumatoria()));
+                break;
+        
+            default:
+                break;
+        }
+    }
 
 
 }
