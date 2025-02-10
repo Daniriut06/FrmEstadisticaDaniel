@@ -96,11 +96,19 @@ public class FrmEstadistica extends JFrame{
 
 
     private void agregarDato(){
+        try{
+
+        
         double dato=Double.parseDouble(txtDato.getText());
         totalDatos++;
         muestra[totalDatos] = dato;
+        txtDato.setText("");
         mostrarMuestra();
-
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "debe especificar un valor numerico");
+            txtDato.setText("");
+        }
 
     }
 
@@ -117,7 +125,22 @@ public class FrmEstadistica extends JFrame{
     }
 
     private void quitarDato(){
-        JOptionPane.showMessageDialog(null,"hizo click en quitar");
+        //obtener la posicion escogida
+        int posicion=lstMuestra.getSelectedIndex();
+        //retirar la posicion del vector
+
+        if (posicion >= 0){
+            for (int i=posicion;i<totalDatos;i++){
+                muestra[i]=muestra[i+1];
+    
+            }
+            totalDatos--;
+            mostrarMuestra();
+        }else{
+            JOptionPane.showMessageDialog(null, "debe seleccionar una posicion");
+        }
+        
+        
 
     }
 
