@@ -1,11 +1,14 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.WindowConstants;
@@ -15,6 +18,7 @@ public class FrmEstadistica extends JFrame{
 
     JTextField txtDato;
     JList lstMuestra;
+    JTextField txtEstadistica;
 
     public FrmEstadistica (){    
         setSize (600,300);
@@ -43,8 +47,27 @@ public class FrmEstadistica extends JFrame{
         getContentPane().add(btnQuitar);
 
         lstMuestra=new JList();
-        lstMuestra.setBounds(360,40,100,150);
-        getContentPane().add(lstMuestra);
+        JScrollPane spMuestra=new JScrollPane(lstMuestra);
+        spMuestra.setBounds(360,40,100,150);
+        getContentPane().add(spMuestra);
+
+        JButton btnEstadistica=new JButton("Calcular");
+        btnEstadistica.setBounds(85,205,100,25);
+        getContentPane().add(btnEstadistica);
+
+        JComboBox cmbEstadistica=new JComboBox();
+        String[] opciones=new String[]{"Sumatoria", "Promedio", "Desviacion", "Maximo", "Minimo", "Moda"}; 
+        DefaultComboBoxModel mdlEstadistica=new DefaultComboBoxModel(opciones);
+        cmbEstadistica.setModel(mdlEstadistica);
+        cmbEstadistica.setBounds(190,205,100,25);
+        getContentPane().add(cmbEstadistica);
+
+        txtEstadistica=new JTextField();
+        txtEstadistica.setBounds(300,205,100,25);
+        getContentPane().add(txtEstadistica);
+
+
+        //Eventos de la GUI
 
         btnAgregar.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
